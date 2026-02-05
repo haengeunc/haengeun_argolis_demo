@@ -68,4 +68,28 @@ view: +orders {
     value_format_name: "percent_0"
   }
 
+  measure: sales_previous_month {
+    type: period_over_period
+    based_on: order_items.total_sale_price
+    based_on_time: order_items.created_date
+    period: month
+    kind: previous
+  }
+
+  measure: sales_month_over_month_change {
+    type: period_over_period
+    based_on: order_items.total_sale_price
+    based_on_time: order_items.created_date
+    period: month
+    kind: relative_change
+    value_format_name: percent_0
+  }
+
+  # measure: sales_month_over_month_change_num {
+  #   type: number
+  #   sql: ((${order_items.total_sale_price} / ${sales_previous_month}) - 1) * 100 ;;
+  #   value_format: "0.00\%"
+  #   label: "MoM % Change"
+  # }
+
 }

@@ -24,12 +24,14 @@ view: +order_items {
     value_format:"[>=1000]$#,##0,\"K\";[<1000]$#,##0"
     drill_fields: [products.name, products.brand,total_sale_price]
     synonyms: ["revenue", "total value", "unit price", "line item value"]
+    html: Total {{ rendered_value }} | Avg {{average_sale_price._rendered_value }};;
   }
 
 
   measure: average_sale_price {
     type: average
     sql: ${sale_price} ;;
+    value_format_name: usd_0
   }
 
   measure: first_order {
