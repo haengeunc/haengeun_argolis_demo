@@ -1,3 +1,5 @@
+#test demo - test
+
 view: distribution_centers {
   sql_table_name: `bigquery-public-data.thelook_ecommerce.distribution_centers` ;;
   drill_fields: [id]
