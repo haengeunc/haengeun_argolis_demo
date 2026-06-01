@@ -1,6 +1,6 @@
 ---
 - dashboard: haengeun_ecommerce_overviews_demo
-  title: " Haengeun e-commerce overviews demo"
+  title: "Haengeun e-commerce overviews demo @{city_name}"
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
@@ -8,7 +8,7 @@
   elements:
   - title: Customers Age Profile
     name: Customers Age Profile
-    model: thelook_ecommerce_haengeun_us
+    model: "@{model_name}"
     explore: customer_orders
     type: looker_grid
     fields: [users.country, users.average_age]
