@@ -1,7 +1,0 @@
-{
-    "looker.instanceURL": "https://looker.haengeun.org",
-    "looker.clientId": "WKBsZn3wVSTxrJK3vZzD",
-    "looker.clientSecret": "ZtrhbpF6Y3FsRtfxpXWmsKWR",
-    "looker.projectId": "haengeun_argolis_demo",
-    "looker.skillsInstallPath": ".agents/skills"
-}
