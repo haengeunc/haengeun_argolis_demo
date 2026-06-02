@@ -1,18 +1,22 @@
 connection: "bq-haengeun-ecommerce-eu"
 
-include: "/dashboards/*.dashboard"
+# # include: "/explores/*.lkml"
+# include: "/dashboards/*.dashboard"
 
-# # Select the views that should be a part of this model,
-# # and define the joins that connect them together.
-#
-# explore: order_items {
-#   join: orders {
-#     relationship: many_to_one
-#     sql_on: ${orders.id} = ${order_items.order_id} ;;
-#   }
-#
-#   join: users {
-#     relationship: many_to_one
-#     sql_on: ${users.id} = ${orders.user_id} ;;
-#   }
-# }
+# # label: "Haengeun E-commerce EU connection"
+
+# # datagroup: thelook_ecommerce_default_datagroup {
+# #   # sql_trigger: SELECT MAX(id) FROM etl_log;;
+# #   max_cache_age: "4 hour"
+# # }
+
+# # datagroup: orders_datagroup {
+# #   sql_trigger: SELECT max(id) FROM `bigquery-public-data.thelook_ecommerce.orders` ;;
+# #   max_cache_age: "24 hours"
+# #   label: "ETL ID added"
+# #   description: "Triggered when new ID is added to ETL log"
+# # }
+
+
+
+# # persist_with: thelook_ecommerce_default_datagroup
