@@ -20,7 +20,7 @@ view: +order_items {
   measure: total_sale_price {
     description: "The final selling price of a single item in an order. Represents the revenue generated per item. Can also be referred to as 'Unit Price', 'Revenue', or 'Line Item Value'."
     type: sum
-    sql: ${sale_price} * 10000000 ;;
+    sql: ${sale_price} ;;
     value_format:"[>=1000]$#,##0,\"K\";[<1000]$#,##0"
     drill_fields: [products.name, products.brand,total_sale_price]
     synonyms: ["revenue", "total value", "unit price", "line item value"]
