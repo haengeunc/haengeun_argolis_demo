@@ -14,14 +14,14 @@ explore: customer_orders {
   #   user_attribute: country
   # }
 
-  sql_always_where:
-        {% assign country_array = _user_attributes['country'] | split: "," %}
-        ${users.country} IN (
-        {% for country in country_array %}
-        '{{ country | strip }}'
-        {% unless forloop.last %}, {% endunless %}
-        {% endfor %}
-        ) ;;
+  # sql_always_where:
+  #       {% assign country_array = _user_attributes['country'] | split: "," %}
+  #       ${users.country} IN (
+  #       {% for country in country_array %}
+  #       '{{ country | strip }}'
+  #       {% unless forloop.last %}, {% endunless %}
+  #       {% endfor %}
+  #       ) ;;
 
   view_name: order_items
 
