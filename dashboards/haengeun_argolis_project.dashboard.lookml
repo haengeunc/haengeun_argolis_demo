@@ -4,7 +4,6 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   description: "Key customer and order metrics for the Haengeun Argolis project."
-  preferred_slug: haengeun-argolis-project-overview
   elements:
   - title: Total Orders
     name: Total Orders
