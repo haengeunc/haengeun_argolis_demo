@@ -44,4 +44,84 @@ view: +order_items {
     sql: MAX(${created_date}) ;;
   }
 
+
+  # ----------------------------------------------------------------------
+  # 1. Fulfillment Durations (Dimensions)
+  # ----------------------------------------------------------------------
+
+  dimension: days_to_process {
+    type: number
+    label: "Days to Process"
+    description: "Number of fractional days from order creation to shipment"
+    sql: DATE_DIFF(DATE(${shipped_raw}), DATE(${created_raw}), DAY) ;;
+    # For sub-day fractional precision, use:
+    # sql: TIMESTAMP_DIFF(${shipped_raw}, ${created_raw}, SECOND) / 86400.0 ;;
+    value_format_name: decimal_1
+    group_label: "Fulfillment Timelines"
+  }
+
+  dimension: days_to_deliver {
+    type: number
+    label: "Days to Deliver"
+    description: "Number of fractional days from shipment to delivery to customer"
+    sql: DATE_DIFF(DATE(${delivered_raw}), DATE(${shipped_raw}), DAY) ;;
+    # For sub-day fractional precision, use:
+    # sql: TIMESTAMP_DIFF(${delivered_raw}, ${shipped_raw}, SECOND) / 86400.0 ;;
+    value_format_name: decimal_1
+    group_label: "Fulfillment Timelines"
+  }
+
+  dimension: days_order_to_delivery {
+    type: number
+    label: "Total Days to Deliver (End-to-End)"
+    description: "Total days from order creation to customer receipt"
+    sql: DATE_DIFF(DATE(${delivered_raw}), DATE(${created_raw}), DAY) ;;
+    value_format_name: decimal_1
+    group_label: "Fulfillment Timelines"
+  }
+
+  # ----------------------------------------------------------------------
+  # 2. Tiers / Buckets (Useful for bar charts, filters, and histograms)
+  # ----------------------------------------------------------------------
+
+  dimension: days_to_deliver_tier {
+    type: tier
+    tiers: [0, 2, 4, 7, 10, 14]
+    style: integer
+    sql: ${days_to_deliver} ;;
+    group_label: "Fulfillment Timelines"
+    label: "Days to Deliver Tier"
+  }
+
+  # ----------------------------------------------------------------------
+  # 3. Measures (Averages, Medians, and Metrics)
+  # ----------------------------------------------------------------------
+
+  measure: average_days_to_process {
+    type: average
+    label: "Average Days to Process"
+    description: "Average duration between order creation and shipment"
+    sql: ${days_to_process} ;;
+    value_format_name: decimal_1
+    group_label: "Fulfillment Metrics"
+  }
+
+  measure: average_days_to_deliver {
+    type: average
+    label: "Average Days to Deliver"
+    description: "Average duration between shipment and delivery"
+    sql: ${days_to_deliver} ;;
+    value_format_name: decimal_1
+    group_label: "Fulfillment Metrics"
+  }
+
+  measure: average_total_delivery_time {
+    type: average
+    label: "Average Total Delivery Time"
+    description: "Average end-to-end days from order to delivery"
+    sql: ${days_order_to_delivery} ;;
+    value_format_name: decimal_1
+    group_label: "Fulfillment Metrics"
+  }
+
 }
