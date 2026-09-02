@@ -4,7 +4,7 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
-  preferred_slug: gwaH85w2mPXQKdQkEcKGo3
+  # preferred_slug: gwaH85w2mPXQKdQkEcKGo3
   elements:
   - title: Customers Age Profile
     name: Customers Age Profile
