@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "Looker": {
+      "httpUrl": "http://127.0.0.1:5050",
+      "includeTools": [
+        "create_view_from_table",
+        "dev_mode",
+        "get_connection_schemas",
+        "get_connection_databases",
+        "get_connection_table_columns",
+        "get_connection_tables",
+        "get_connections",
+        "get_dimensions",
+        "get_explores",
+        "get_filters",
+        "get_lookml_tests",
+        "get_measures",
+        "get_models",
+        "get_parameters",
+        "get_projects",
+        "query",
+        "query_sql",
+        "run_lookml_tests",
+        "validate_project"
+      ]
+    }
+  }
+}
