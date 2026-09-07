@@ -72,13 +72,13 @@ view: +order_items {
 
   measure: net_revenue {
     type: sum
-    label: "Net Revenue (Recognized)"
+    label: "Net Revenue (Completed)"
     group_label: "Revenue"
-    description: "Total recognized revenue excluding cancelled and returned items. Formula: SUM(sale_price WHERE status NOT IN ('Cancelled', 'Returned'))."
-    sql: CASE WHEN ${TABLE}.status NOT IN ('Cancelled', 'Returned') THEN ${sale_price} ELSE 0 END ;;
+    description: "Total recognized revenue for completed and finalized orders only. Excludes in-flight orders (Shipped, Processing) and lost orders (Cancelled, Returned). Formula: SUM(sale_price WHERE status = 'Complete')."
+    sql: CASE WHEN ${TABLE}.status = 'Complete' THEN ${sale_price} ELSE 0 END ;;
     value_format_name: usd_0
     drill_fields: [products.name, products.brand, products.category, net_revenue]
-    synonyms: ["net sales", "retained revenue", "actual revenue", "realized revenue", "recognized revenue", "bottom line revenue"]
+    synonyms: ["net sales", "completed revenue", "recognized revenue", "actual revenue", "realized revenue", "closed revenue", "finalized sales"]
   }
 
   measure: returned_or_cancelled_revenue {
@@ -109,7 +109,7 @@ view: +order_items {
 
   measure: net_order_count {
     type: count_distinct
-    sql: CASE WHEN ${TABLE}.status NOT IN ('Cancelled', 'Returned') THEN ${order_id} ELSE NULL END ;;
+    sql: CASE WHEN ${TABLE}.status = 'Complete' THEN ${order_id} ELSE NULL END ;;
     hidden: yes
   }
 
@@ -117,10 +117,10 @@ view: +order_items {
     type: number
     label: "Net Average Order Value"
     group_label: "Order Value"
-    description: "Average realized revenue per fulfilled/retained order, excluding cancelled and returned orders. Formula: Net Revenue / Net Kept Orders."
+    description: "Average realized revenue per completed order, excluding shipped, processing, cancelled, and returned orders. Formula: Net Revenue / Completed Orders."
     sql: 1.0 * ${net_revenue} / NULLIF(${net_order_count}, 0) ;;
     value_format_name: usd
-    synonyms: ["net aov", "retained aov", "realized order value", "retained basket size", "net basket size", "net ticket size", "fulfilled aov"]
+    synonyms: ["net aov", "completed aov", "finalized basket size", "recognized aov", "retained aov"]
   }
 
   # ----------------------------------------------------------------------
@@ -130,13 +130,13 @@ view: +order_items {
   measure: dynamic_revenue {
     type: sum
     label: "{% if _user_attributes['department'] == 'sales' %}Total Bookings (Sales){% else %}Recognised Net Revenue (Finance){% endif %}"
-    description: "{% if _user_attributes['department'] == 'sales' %}Gross booking value across all orders, regardless of return/cancellation status{% else %}Recognised revenue excluding cancelled and returned items{% endif %}"
+    description: "{% if _user_attributes['department'] == 'sales' %}Gross booking value across all orders, regardless of return/cancellation status{% else %}Recognised completed revenue excluding shipped, processing, cancelled and returned items{% endif %}"
     sql:
       {% if _user_attributes['department'] == 'sales' %}
         ${sale_price}
       {% elsif _user_attributes['department'] == 'finance' %}
         CASE
-          WHEN ${TABLE}.status NOT IN ('Cancelled', 'Returned') THEN
+          WHEN ${TABLE}.status = 'Complete' THEN
           ${sale_price}
           ELSE 0
         END
