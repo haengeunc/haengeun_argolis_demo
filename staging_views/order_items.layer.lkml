@@ -52,42 +52,23 @@ view: +order_items {
   measure: dynamic_revenue {
     type: sum
     label: "{% if _user_attributes['department'] == 'sales' %}Total Bookings (Sales){% else %}Recognised Net Revenue (Finance){% endif %}"
-    description: "Persona-based revenue driven by user attribute ('department'): Sales users see Total Bookings, Finance/others see Recognised Net Revenue."
+    description: "{% if _user_attributes['department'] == 'sales' %}Gross booking value across all orders, regardless of return/cancellation status{% else %}Recognised revenue excluding cancelled and returned items{% endif %}"
     sql:
       {% if _user_attributes['department'] == 'sales' %}
-        ${TABLE}.sale_price
+        ${sale_price}
       {% elsif _user_attributes['department'] == 'finance' %}
-        CASE 
-          WHEN ${TABLE}.status NOT IN ('Cancelled', 'Returned') THEN ${TABLE}.sale_price 
-          ELSE 0 
+        CASE
+          WHEN ${TABLE}.status NOT IN ('Cancelled', 'Returned') THEN
+          ${sale_price}
+          ELSE 0
         END
       {% else %}
-        ${TABLE}.sale_price
+        ${sale_price}
       {% endif %} ;;
-      
+
     value_format_name: usd_0
-    group_label: "Persona Metrics"
+
     drill_fields: [products.name, products.brand, dynamic_revenue]
-  }
-
-  measure: total_bookings {
-    type: sum
-    label: "Total Bookings (Sales)"
-    description: "Gross booking value across all orders, regardless of return/cancellation status."
-    sql: ${sale_price} ;;
-    value_format_name: usd_0
-    group_label: "Persona Metrics"
-    drill_fields: [products.name, products.brand, total_bookings]
-  }
-
-  measure: recognised_net_revenue {
-    type: sum
-    label: "Recognised Net Revenue (Finance)"
-    description: "Recognised revenue excluding cancelled and returned items."
-    sql: CASE WHEN ${status} NOT IN ('Cancelled', 'Returned') THEN ${sale_price} ELSE 0 END ;;
-    value_format_name: usd_0
-    group_label: "Persona Metrics"
-    drill_fields: [products.name, products.brand, recognised_net_revenue]
   }
 
   measure: returned_or_cancelled_revenue {
@@ -96,7 +77,6 @@ view: +order_items {
     description: "Lost revenue due to cancellations and returns."
     sql: CASE WHEN ${status} IN ('Cancelled', 'Returned') THEN ${sale_price} ELSE 0 END ;;
     value_format_name: usd_0
-    group_label: "Persona Metrics"
   }
 
   measure: first_order {
