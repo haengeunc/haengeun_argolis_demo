@@ -10,6 +10,7 @@ include: "/dashboards/*.dashboard"
 
 label: "Haengeun E-commerce"
 
+#e-commerce business starting fiscal year from Feb1 to capture late holiday returns and final post-holiday inventory clearing.
 fiscal_month_offset: 1
 
 datagroup: thelook_ecommerce_default_datagroup {
