@@ -64,12 +64,4 @@ view: +products {
       </div> ;;
   }
 
-  dimension: pokemon_image {
-    type: string
-    label: "Pokémon Image"
-    description: "Visual badge of the category Pokémon"
-    sql: ${pokemon_mascot} ;;
-    html: <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{% if value == 'Charizard' %}6{% elsif value == 'Lucario' %}448{% elsif value == 'Snorlax' %}143{% elsif value == 'Squirtle' %}7{% elsif value == 'Gengar' %}94{% elsif value == 'Mewtwo' %}150{% elsif value == 'Jigglypuff' %}39{% elsif value == 'Pikachu' %}25{% elsif value == 'Scorbunny' %}813{% elsif value == 'Greninja' %}658{% elsif value == 'Eevee' %}133{% elsif value == 'Sylveon' %}700{% elsif value == 'Machamp' %}68{% elsif value == 'Slowpoke' %}79{% elsif value == 'Gardevoir' %}282{% elsif value == 'Meowth' %}52{% elsif value == 'Chansey' %}113{% elsif value == 'Blastoise' %}9{% elsif value == 'Dragonite' %}149{% elsif value == 'Blaziken' %}257{% elsif value == 'Togekiss' %}468{% elsif value == 'Alakazam' %}65{% elsif value == 'Bulbasaur' %}1{% elsif value == 'Hitmonlee' %}106{% elsif value == 'Pichu' %}172{% else %}132{% endif %}.png" height="42" width="42" style="object-fit: contain; vertical-align: middle;"/> ;;
-  }
-
 }

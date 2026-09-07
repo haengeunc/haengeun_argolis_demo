@@ -6,9 +6,9 @@ explore: +customer_orders {
   query: top_products_by_sales {
     description: "Top 10 products by revenue this year."
     dimensions: [products.name]
-    measures: [order_items.total_sale_price]
+    measures: [order_items.gross_revenue]
     filters: [order_items.created_date: "this year"]
-    sorts: [order_items.total_sale_price: desc]
+    sorts: [order_items.gross_revenue: desc]
     limit: 10
   }
 }
@@ -17,7 +17,7 @@ explore: +customer_orders {
   query: daily_revenue {
     description: "Daily revenue and order count for the last 30 days."
     dimensions: [order_items.created_date]
-    measures: [order_items.total_sale_price, order_items.count]
+    measures: [order_items.gross_revenue, order_items.total_items_sold]
     filters: [order_items.created_date: "30 days ago for 30 days"]
 
   }
@@ -41,7 +41,7 @@ explore: +customer_orders {
   query: yearly_sales_by_category {
     description: "Total sales by product category for the last 3 years."
     dimensions: [products.category]
-    measures: [order_items.total_sale_price]
+    measures: [order_items.gross_revenue]
     pivots: [orders.created_year]
     limit: 10
     filters: {

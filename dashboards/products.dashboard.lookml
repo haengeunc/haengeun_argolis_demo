@@ -12,7 +12,7 @@
     model: thelook_ecommerce_haengeun_us
     explore: customer_orders
     type: looker_line
-    fields: [order_items.created_month_name, order_items.total_sale_price, order_items.created_year]
+    fields: [order_items.created_month_name, order_items.gross_revenue, order_items.created_year]
     pivots: [order_items.created_year]
     fill_fields: [order_items.created_month_name]
     filters:
@@ -51,10 +51,10 @@
       palette_id: google-categorical-0
       options:
         steps: 5
-    y_axes: [{label: '', orientation: left, series: [{id: '2018', name: '2018', axisId: order_items.total_sale_price},
-          {id: '2017', name: '2017', axisId: order_items.total_sale_price}, {id: '2016',
-            name: '2016', axisId: order_items.total_sale_price}, {id: '2015', name: '2015',
-            axisId: order_items.total_sale_price}], showLabels: true, showValues: true,
+    y_axes: [{label: '', orientation: left, series: [{id: '2018', name: '2018', axisId: order_items.gross_revenue},
+          {id: '2017', name: '2017', axisId: order_items.gross_revenue}, {id: '2016',
+            name: '2016', axisId: order_items.gross_revenue}, {id: '2015', name: '2015',
+            axisId: order_items.gross_revenue}], showLabels: true, showValues: true,
         unpinAxis: false, tickDensity: default, type: linear, valueFormat: "$0,\\\
           K\\"}]
     y_axis_value_format: "$#,##0"
@@ -89,7 +89,7 @@
     model: thelook_ecommerce_haengeun_us
     explore: customer_orders
     type: single_value
-    fields: [order_items.total_sale_price, order_items.created_year]
+    fields: [order_items.gross_revenue, order_items.created_year]
     fill_fields: [order_items.created_year]
     sorts: [order_items.created_year desc]
     limit: 500
@@ -102,7 +102,7 @@
       calculation_type: percent_difference_from_previous
       table_calculation: vs_last_year
       args:
-      - order_items.total_sale_price
+      - order_items.gross_revenue
       _kind_hint: measure
       _type_hint: number
     custom_color_enabled: true
@@ -220,8 +220,8 @@
     model: thelook_ecommerce_haengeun_us
     explore: customer_orders
     type: looker_column
-    fields: [products.brand, order_items.total_sale_price]
-    sorts: [order_items.total_sale_price desc 0]
+    fields: [products.brand, order_items.gross_revenue]
+    sorts: [order_items.gross_revenue desc 0]
     limit: 10
     column_limit: 50
     x_axis_gridlines: false
@@ -251,8 +251,8 @@
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    y_axes: [{label: '', orientation: left, series: [{axisId: order_items.total_sale_price,
-            id: order_items.total_sale_price, name: Total Sale Price}], showLabels: true,
+    y_axes: [{label: '', orientation: left, series: [{axisId: order_items.gross_revenue,
+            id: order_items.gross_revenue, name: Total Sale Price}], showLabels: true,
         showValues: true, valueFormat: '$#,##0,"K"', unpinAxis: false, tickDensity: default,
         tickDensityCustom: 5, type: linear}]
     x_axis_zoom: true
@@ -321,8 +321,8 @@
     model: thelook_ecommerce_haengeun_us
     explore: customer_orders
     type: looker_column
-    fields: [order_items.total_sale_price, products.category]
-    sorts: [order_items.total_sale_price desc 0]
+    fields: [order_items.gross_revenue, products.category]
+    sorts: [order_items.gross_revenue desc 0]
     limit: 10
     column_limit: 50
     x_axis_gridlines: false
@@ -352,15 +352,15 @@
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    y_axes: [{label: '', orientation: left, series: [{axisId: order_items.total_sale_price,
-            id: order_items.total_sale_price, name: Total Sale Price}], showLabels: true,
+    y_axes: [{label: '', orientation: left, series: [{axisId: order_items.gross_revenue,
+            id: order_items.gross_revenue, name: Total Sale Price}], showLabels: true,
         showValues: true, valueFormat: '$#,##0,"K"', unpinAxis: false, tickDensity: default,
         tickDensityCustom: 5, type: linear}]
     x_axis_zoom: true
     y_axis_zoom: true
     label_value_format: $#,##0,"K"
     series_colors:
-      order_items.total_sale_price: "#7CB342"
+      order_items.gross_revenue: "#7CB342"
     reference_lines: [{reference_type: line, line_value: mean, range_start: max, range_end: min,
         margin_top: deviation, margin_value: mean, margin_bottom: deviation, label_position: right,
         color: "#000000"}, {reference_type: line, line_value: mean, range_start: max,
@@ -409,8 +409,8 @@
     model: thelook_ecommerce_haengeun_us
     explore: customer_orders
     type: looker_column
-    fields: [order_items.total_sale_price, products.name]
-    sorts: [order_items.total_sale_price desc 0]
+    fields: [order_items.gross_revenue, products.name]
+    sorts: [order_items.gross_revenue desc 0]
     limit: 10
     column_limit: 50
     x_axis_gridlines: false
@@ -440,15 +440,15 @@
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    y_axes: [{label: '', orientation: left, series: [{axisId: order_items.total_sale_price,
-            id: order_items.total_sale_price, name: Total Sale Price}], showLabels: true,
+    y_axes: [{label: '', orientation: left, series: [{axisId: order_items.gross_revenue,
+            id: order_items.gross_revenue, name: Total Sale Price}], showLabels: true,
         showValues: true, valueFormat: '$#,##0,"K"', unpinAxis: false, tickDensity: default,
         tickDensityCustom: 5, type: linear}]
     x_axis_zoom: true
     y_axis_zoom: true
     label_value_format: $#,##0,"K"
     series_colors:
-      order_items.total_sale_price: "#9334E6"
+      order_items.gross_revenue: "#9334E6"
     reference_lines: [{reference_type: line, line_value: mean, range_start: max, range_end: min,
         margin_top: deviation, margin_value: mean, margin_bottom: deviation, label_position: right,
         color: "#000000"}, {reference_type: line, line_value: mean, range_start: max,
@@ -497,8 +497,8 @@
     model: thelook_ecommerce_haengeun_us
     explore: customer_orders
     type: looker_column
-    fields: [order_items.total_sale_price, users.country]
-    sorts: [order_items.total_sale_price desc 0]
+    fields: [order_items.gross_revenue, users.country]
+    sorts: [order_items.gross_revenue desc 0]
     limit: 10
     column_limit: 50
     x_axis_gridlines: false
@@ -528,15 +528,15 @@
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    y_axes: [{label: '', orientation: left, series: [{axisId: order_items.total_sale_price,
-            id: order_items.total_sale_price, name: Total Sale Price}], showLabels: true,
+    y_axes: [{label: '', orientation: left, series: [{axisId: order_items.gross_revenue,
+            id: order_items.gross_revenue, name: Total Sale Price}], showLabels: true,
         showValues: true, valueFormat: '$#,##0,"K"', unpinAxis: false, tickDensity: default,
         tickDensityCustom: 5, type: linear}]
     x_axis_zoom: true
     y_axis_zoom: true
     label_value_format: $#,##0,"K"
     series_colors:
-      order_items.total_sale_price: "#EA4335"
+      order_items.gross_revenue: "#EA4335"
     reference_lines: [{reference_type: line, line_value: mean, range_start: max, range_end: min,
         margin_top: deviation, margin_value: mean, margin_bottom: deviation, label_position: right,
         color: "#000000"}, {reference_type: line, line_value: mean, range_start: max,

@@ -1,13 +1,13 @@
 # Ensuring data integrity for financial measures and user derived facts
 
-test: sale_price_is_positive {
+test: gross_revenue_is_positive {
   explore_source: customer_orders {
-    column: total_sale_price {
-      field: order_items.total_sale_price
+    column: gross_revenue {
+      field: order_items.gross_revenue
     }
   }
-  assert: total_sale_price_is_positive {
-    expression: ${order_items.total_sale_price} >= 0 ;;
+  assert: gross_revenue_is_positive {
+    expression: ${order_items.gross_revenue} >= 0 ;;
   }
 }
 
