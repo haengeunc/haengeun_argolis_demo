@@ -3,7 +3,18 @@ include: "/views/order_items.view.lkml"
 view: +order_items {
 
   dimension_group: created {
-    timeframes: [raw, time, date, week, month, month_name, quarter, year]
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year,
+      fiscal_year,
+      fiscal_quarter
+    ]
   }
 
   dimension: status {
