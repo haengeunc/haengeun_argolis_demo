@@ -81,6 +81,17 @@ view: +order_items {
     synonyms: ["net sales", "completed revenue", "recognized revenue", "actual revenue", "realized revenue", "closed revenue", "finalized sales"]
   }
 
+  measure: in_flight_revenue {
+    type: sum
+    label: "In-Flight Revenue (Pending)"
+    group_label: "Revenue"
+    description: "Revenue from orders currently in progress (Processing in warehouse or Shipped in transit). Not yet recognized as completed. Formula: SUM(sale_price WHERE status IN ('Shipped', 'Processing'))."
+    sql: CASE WHEN ${status} IN ('Shipped', 'Processing') THEN ${sale_price} ELSE 0 END ;;
+    value_format_name: usd_0
+    drill_fields: [products.name, products.brand, products.category, status, in_flight_revenue]
+    synonyms: ["in flight revenue", "pipeline revenue", "pending revenue", "in transit revenue", "unfulfilled revenue", "open orders revenue", "processing revenue", "shipped revenue"]
+  }
+
   measure: returned_or_cancelled_revenue {
     type: sum
     label: "Returned & Cancelled Revenue"
