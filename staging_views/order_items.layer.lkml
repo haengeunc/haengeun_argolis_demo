@@ -63,6 +63,20 @@ view: +order_items {
     drill_fields: [products.name, products.brand, products.category, net_revenue]
   }
 
+  measure: order_count {
+    type: count_distinct
+    sql: ${order_id} ;;
+    hidden: yes
+  }
+
+  measure: average_order_value {
+    type: number
+    label: "Average Order Value"
+    description: "Average gross revenue generated per order (Gross Revenue / Distinct Orders)"
+    sql: 1.0 * ${gross_revenue} / NULLIF(${order_count}, 0) ;;
+    value_format_name: usd
+  }
+
   # ----------------------------------------------------------------------
   # Persona-Driven Dynamic Metrics (User Attributes: Sales vs Finance)
   # ----------------------------------------------------------------------
