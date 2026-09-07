@@ -25,7 +25,8 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     defaults_version: 1
-    listen: {}
+    listen:
+      Created Date: inventory_items.created_date
     row: 0
     col: 0
     width: 6
@@ -48,7 +49,8 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     defaults_version: 1
-    listen: {}
+    listen:
+      Created Date: inventory_items.created_date
     value_format: "$#,##0.00"
     row: 0
     col: 6
@@ -72,7 +74,8 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     defaults_version: 1
-    listen: {}
+    listen:
+      Created Date: inventory_items.created_date
     value_format: "$#,##0.00"
     row: 0
     col: 12
@@ -96,7 +99,8 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     defaults_version: 1
-    listen: {}
+    listen:
+      Created Date: inventory_items.created_date
     row: 0
     col: 18
     width: 6
@@ -143,7 +147,8 @@
     series_colors:
       inventory_items.count: "#4285F4"
     defaults_version: 1
-    listen: {}
+    listen:
+      Created Date: inventory_items.created_date
     row: 3
     col: 0
     width: 12
@@ -169,7 +174,8 @@
       Swim: "#EA7B46"
       Underwear: "#AB47BC"
     defaults_version: 1
-    listen: {}
+    listen:
+      Created Date: inventory_items.created_date
     row: 3
     col: 12
     width: 12
@@ -219,7 +225,8 @@
     x_axis_zoom: true
     y_axis_zoom: true
     defaults_version: 1
-    listen: {}
+    listen:
+      Created Date: inventory_items.created_date
     row: 10
     col: 0
     width: 12
@@ -267,7 +274,8 @@
     series_colors:
       inventory_items.count: "#9C27B0"
     defaults_version: 1
-    listen: {}
+    listen:
+      Created Date: inventory_items.created_date
     row: 10
     col: 12
     width: 12
@@ -315,7 +323,8 @@
     series_colors:
       inventory_items.count: "#E67E22"
     defaults_version: 1
-    listen: {}
+    listen:
+      Created Date: inventory_items.created_date
     row: 17
     col: 0
     width: 12
@@ -364,7 +373,8 @@
       inventory_items.average_retail_price: "#16A34A"
     value_format: "$#,##0.00"
     defaults_version: 1
-    listen: {}
+    listen:
+      Created Date: inventory_items.created_date
     row: 17
     col: 12
     width: 12
@@ -397,8 +407,25 @@
     conditional_formatting_include_nulls: false
     truncate_column_names: false
     defaults_version: 1
-    listen: {}
+    listen:
+      Created Date: inventory_items.created_date
     row: 24
     col: 0
     width: 24
     height: 12
+
+  filters:
+  - name: Created Date
+    title: Created Date
+    type: field_filter
+    default_value: 12 months
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: advanced
+      display: popover
+      options: []
+    model: bq-haengeun-ecommerce
+    explore: fulfillment
+    listens_to_filters: []
+    field: inventory_items.created_date
