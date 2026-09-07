@@ -8,7 +8,7 @@ include: "/views_derived/user_order_facts.view.lkml"
 
 explore: customer_orders {
   label: "Customers & Orders"
-  description: "Explore information about orders placed by customers"
+  description: "Primary e-commerce analytics explore for customer orders, gross and net revenue, average order value (Gross AOV and Net AOV), fulfillment performance, products, and customer demographics."
   # access_filter: {
   #   field: users.country
   #   user_attribute: country
