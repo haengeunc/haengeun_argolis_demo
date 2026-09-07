@@ -244,7 +244,7 @@
       order_items.in_flight_revenue, order_items.returned_or_cancelled_revenue]
     fill_fields: [order_items.created_month]
     filters:
-      order_items.created_year: 36 month ago for 36 month
+      order_items.created_date: 36 month ago for 36 month
     sorts: [order_items.created_month]
     limit: 500
     column_limit: 50
@@ -666,7 +666,7 @@
     row: 94
     col: 0
     width: 72
-    height: 12
+    height: 16
     tab_name: ''
   filters:
   - name: Country
