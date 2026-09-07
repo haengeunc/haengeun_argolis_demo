@@ -79,6 +79,47 @@ view: +order_items {
     value_format_name: usd_0
   }
 
+  measure: gross_revenue {
+    type: sum
+    label: "Gross (Total) Revenue"
+    description: "Total gross revenue across all orders"
+    sql: ${sale_price} ;;
+    value_format_name: usd_0
+    drill_fields: [products.name, products.brand, products.category, gross_revenue]
+  }
+
+  measure: net_revenue {
+    type: sum
+    label: "Net Realized Revenue"
+    description: "Total revenue excluding cancelled and returned items"
+    sql: CASE WHEN ${TABLE}.status NOT IN ('Cancelled', 'Returned') THEN ${sale_price} ELSE 0 END ;;
+    value_format_name: usd_0
+    drill_fields: [products.name, products.brand, products.category, net_revenue]
+  }
+
+  measure: total_items_sold {
+    type: count
+    label: "Total Items Sold"
+    description: "Count of all order items sold"
+    drill_fields: [products.name, products.brand, products.category, status, sale_price]
+  }
+
+  measure: total_fulfilled_items {
+    type: count
+    label: "Total Fulfilled Items"
+    description: "Items successfully shipped or completed"
+    filters: [status: "Complete, Shipped"]
+    drill_fields: [products.name, products.brand, products.category, status, sale_price]
+  }
+
+  measure: return_cancellation_rate {
+    type: number
+    label: "Return & Cancellation Rate"
+    description: "Percentage of revenue lost to returns and cancellations"
+    sql: 1.0 * ${returned_or_cancelled_revenue} / NULLIF(${gross_revenue}, 0) ;;
+    value_format_name: percent_1
+  }
+
   measure: first_order {
     type: date
     sql: MIN(${created_date}) ;;
