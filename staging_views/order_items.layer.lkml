@@ -28,14 +28,24 @@ view: +order_items {
    ;;
   }
 
-  measure: count {
-    hidden: yes
+  measure: total_items_sold {
+    type: count
+    label: "Total Items Sold"
+    description: "Count of all order items sold"
+    drill_fields: [products.name, products.brand, products.category, status, sale_price]
+  }
+
+  measure: average_sale_price {
+    type: average
+    sql: ${sale_price} ;;
+    value_format_name: usd_0
   }
 
   measure: gross_revenue {
     type: sum
     alias: [total_sale_price]
-    label: "Gross (Total) Revenue"
+    label: "Gross Revenue (Total)"
+    group_label: "Revenue"
     description: "The total gross selling price across order items. Represents total revenue generated before cancellations or returns."
     sql: ${sale_price} ;;
     value_format_name: usd_0
@@ -43,10 +53,14 @@ view: +order_items {
     synonyms: ["revenue", "total value", "unit price", "line item value", "total sale price"]
   }
 
-  measure: average_sale_price {
-    type: average
-    sql: ${sale_price} ;;
+  measure: net_revenue {
+    type: sum
+    label: "Net Revenue (Recognized)"
+    group_label: "Revenue"
+    description: "Total revenue excluding cancelled and returned items"
+    sql: CASE WHEN ${TABLE}.status NOT IN ('Cancelled', 'Returned') THEN ${sale_price} ELSE 0 END ;;
     value_format_name: usd_0
+    drill_fields: [products.name, products.brand, products.category, net_revenue]
   }
 
   # ----------------------------------------------------------------------
@@ -78,26 +92,12 @@ view: +order_items {
   measure: returned_or_cancelled_revenue {
     type: sum
     label: "Returned/Cancelled Revenue"
+    group_label: "Revenue"
     description: "Lost revenue due to cancellations and returns."
     sql: CASE WHEN ${status} IN ('Cancelled', 'Returned') THEN ${sale_price} ELSE 0 END ;;
     value_format_name: usd_0
   }
 
-  measure: net_revenue {
-    type: sum
-    label: "Net Realized Revenue"
-    description: "Total revenue excluding cancelled and returned items"
-    sql: CASE WHEN ${TABLE}.status NOT IN ('Cancelled', 'Returned') THEN ${sale_price} ELSE 0 END ;;
-    value_format_name: usd_0
-    drill_fields: [products.name, products.brand, products.category, net_revenue]
-  }
-
-  measure: total_items_sold {
-    type: count
-    label: "Total Items Sold"
-    description: "Count of all order items sold"
-    drill_fields: [products.name, products.brand, products.category, status, sale_price]
-  }
 
   measure: return_cancellation_rate {
     type: number
