@@ -181,8 +181,8 @@
     model: bq-haengeun-ecommerce
     explore: fulfillment
     type: looker_line
-    fields: [inventory_items.created_date, inventory_items.sold_date, inventory_items.count]
-    fill_fields: [inventory_items.created_date, inventory_items.sold_date]
+    fields: [inventory_items.created_date, inventory_items.count, inventory_items.sold_items_count]
+    fill_fields: [inventory_items.created_date]
     sorts: [inventory_items.created_date]
     limit: 500
     column_limit: 50
@@ -212,8 +212,10 @@
     interpolation: linear
     series_colors:
       inventory_items.count: "#1F2937"
+      inventory_items.sold_items_count: "#34A853"
     series_labels:
-      inventory_items.count: Items
+      inventory_items.count: Created Items
+      inventory_items.sold_items_count: Sold Items
     x_axis_zoom: true
     y_axis_zoom: true
     defaults_version: 1
