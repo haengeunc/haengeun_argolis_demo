@@ -1,18 +1,21 @@
 ---
-- dashboard: pokemon_pokemart_ecommerce
+- dashboard: _pokmart_global_operations__pokdex_analytics
   title: "⚡ PokéMart Global Operations & Pokédex Analytics"
-  layout: newspaper
   preferred_viewer: dashboards-next
-  description: "High-voltage Looker analytics for PokéMart e-commerce: total items sold, gross vs net revenue, global gym leaderboards, and best-selling merchandise."
-
+  style: modern
+  description: 'High-voltage Looker analytics for PokéMart e-commerce: total items
+    sold, gross vs net revenue, global gym leaderboards, and best-selling merchandise.'
+  preferred_slug: vnHSSXseNXzIGbJbBlN4ue
+  theme_name: ''
+  layout_granularity: granular
+  layout: newspaper
+  tabs:
+  - name: ''
+    label: ''
   elements:
-  # ====================================================================
-  # ROW 0: GRAND POKÉMART HEADER BANNER
-  # ====================================================================
-  - name: pokemart_header_banner
+  - name: ''
     type: text
-    title_text: ""
-    subtitle_text: ""
+    title_text: ''
     body_text: |
       <div style="background: linear-gradient(135deg, #1E1B4B 0%, #312E81 40%, #1E3A8A 70%, #0F172A 100%); border-radius: 16px; padding: 24px 32px; color: #FFFFFF; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4); border: 2px solid #FCD34D; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
         <div style="display: flex; align-items: center; gap: 24px;">
@@ -37,103 +40,165 @@
       </div>
     row: 0
     col: 0
-    width: 24
-    height: 4
-
-  # ====================================================================
-  # ROW 4: EXECUTIVE POKÉMON KPI SCORECARDS
-  # ====================================================================
-  - title: "⚡ Pikachu's Electro-Charge: Total Items Sold"
-    name: kpi_total_items_sold
+    width: 72
+    height: 8
+    tab_name: ''
+  - title: "⚡ Pikachu's Electro: Total Items Sold"
+    name: "⚡ Pikachu's Electro: Total Items Sold"
     model: thelook_ecommerce_haengeun_us
     explore: customer_orders
     type: single_value
     fields: [order_items.total_items_sold]
     limit: 500
+    column_limit: 50
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
     custom_color: "#D97706"
+    single_value_title: ''
+    smart_single_value_size: false
+    value_format: '[>=1000000] #,##0.0,,"M";[<1000000] #,##0.0,"K";General'
     defaults_version: 1
     listen:
       Country: users.country
       Category: products.category
       Created Year: order_items.created_year
-    row: 4
+    row: 8
     col: 0
-    width: 6
-    height: 3
-
-  - title: "🪙 Meowth's Pay Day: Total Gross Revenue"
-    name: kpi_gross_revenue
+    width: 15
+    height: 6
+    tab_name: ''
+  - title: "🪙 Gross Revenue"
+    name: "🪙 Gross Revenue"
     model: thelook_ecommerce_haengeun_us
     explore: customer_orders
     type: single_value
     fields: [order_items.gross_revenue]
     limit: 500
+    column_limit: 50
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
     custom_color: "#2563EB"
+    smart_single_value_size: false
+    value_format: '[>=1000000] $#,##0.0,,"M";[<1000000] $#,##0.0,"K";General'
     defaults_version: 1
     listen:
       Country: users.country
       Category: products.category
       Created Year: order_items.created_year
-    row: 4
-    col: 6
-    width: 6
-    height: 3
-
-  - title: "💖 Blissey's Pure Profit: Net Realized Revenue"
-    name: kpi_net_revenue
+    row: 8
+    col: 15
+    width: 14
+    height: 6
+    tab_name: ''
+  - title: "💖 Net Realized Revenue (Profit)"
+    name: "💖 Net Realized Revenue (Profit)"
     model: thelook_ecommerce_haengeun_us
     explore: customer_orders
     type: single_value
     fields: [order_items.net_revenue]
     limit: 500
+    column_limit: 50
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
     custom_color: "#059669"
+    smart_single_value_size: false
+    value_format: '[>=1000000] $#,##0.0,,"M";[<1000000] $#,##0.0,"K";General'
     defaults_version: 1
     listen:
       Country: users.country
       Category: products.category
       Created Year: order_items.created_year
-    row: 4
-    col: 12
-    width: 6
-    height: 3
-
-  - title: "😵 Psyduck's Migraine: Returned / Cancelled Loss"
-    name: kpi_returned_cancelled_revenue
+    row: 8
+    col: 29
+    width: 14
+    height: 6
+    tab_name: ''
+  - title: "✈️ In-flight: Processing / Shipped"
+    name: "✈️ In-flight: Processing / Shipped"
+    model: thelook_ecommerce_haengeun_us
+    explore: customer_orders
+    type: single_value
+    fields: [order_items.in_flight_revenue]
+    limit: 500
+    column_limit: 50
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    custom_color: "#2BB8CA"
+    smart_single_value_size: false
+    value_format: '[>=1000000] $#,##0.0,,"M";[<1000000] $#,##0.0,"K";General'
+    defaults_version: 1
+    hidden_pivots: {}
+    listen:
+      Country: users.country
+      Category: products.category
+      Created Year: order_items.created_year
+    row: 8
+    col: 43
+    width: 14
+    height: 6
+    tab_name: ''
+  - title: "😵 Returned / Cancelled"
+    name: "😵 Returned / Cancelled"
     model: thelook_ecommerce_haengeun_us
     explore: customer_orders
     type: single_value
     fields: [order_items.returned_or_cancelled_revenue]
     limit: 500
+    column_limit: 50
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
     custom_color: "#DC2626"
+    single_value_title: ''
+    smart_single_value_size: false
+    value_format: '[>=1000000] $#,##0.0,,"M";[<1000000] $#,##0.0,"K";General'
     defaults_version: 1
     listen:
       Country: users.country
       Category: products.category
       Created Year: order_items.created_year
-    row: 4
-    col: 18
-    width: 6
-    height: 3
-
-  # ====================================================================
-  # ROW 7: POKÉMON KPI MASCOT SQUAD GUIDE
-  # ====================================================================
-  - name: mascot_squad_intro
+    row: 8
+    col: 57
+    width: 14
+    height: 6
+    tab_name: ''
+  - name: " (2)"
     type: text
-    title_text: ""
-    subtitle_text: ""
+    title_text: ''
     body_text: |
       <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 14px;">
         <div style="background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 10px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
@@ -165,24 +230,22 @@
           </div>
         </div>
       </div>
-    row: 7
+    row: 14
     col: 0
-    width: 24
-    height: 3
-
-  # ====================================================================
-  # ROW 10: FINANCIAL HEALTH (GROSS VS NET TIMELINE & ORDER STATUS)
-  # ====================================================================
-  - title: "📈 PokéMart Revenue Trajectory: Gross vs. Net Realized (Monthly Trend)"
-    name: revenue_gross_vs_net_timeline
+    width: 72
+    height: 8
+    tab_name: ''
+  - title: "📈 PokéMart Revenue Trajectory: Gross vs Net Realized (Monthly Trend)"
+    name: "📈 PokéMart Revenue Trajectory: Gross vs Net Realized (Monthly Trend)"
     model: thelook_ecommerce_haengeun_us
     explore: customer_orders
-    type: looker_line
-    fields: [order_items.created_month, order_items.gross_revenue, order_items.net_revenue, order_items.returned_or_cancelled_revenue]
+    type: looker_column
+    fields: [order_items.created_month, order_items.gross_revenue, order_items.net_revenue,
+      order_items.in_flight_revenue, order_items.returned_or_cancelled_revenue]
     fill_fields: [order_items.created_month]
     filters:
-      order_items.created_year: 3 years
-    sorts: [order_items.created_month asc]
+      order_items.created_year: 24 month ago for 24 month
+    sorts: [order_items.created_month]
     limit: 500
     column_limit: 50
     x_axis_gridlines: false
@@ -199,44 +262,58 @@
     y_axis_reversed: false
     plot_size_by_field: false
     trellis: ''
-    stacking: ''
+    stacking: normal
     limit_displayed_rows: false
-    legend_position: top
+    legend_position: center
     point_style: circle_outline
     show_value_labels: false
     label_density: 25
     x_axis_scale: auto
     y_axis_combined: true
-    show_null_points: true
-    interpolation: monotone
-    series_colors:
-      order_items.gross_revenue: "#2563EB"
-      order_items.net_revenue: "#10B981"
-      order_items.returned_or_cancelled_revenue: "#EF4444"
-    series_labels:
-      order_items.gross_revenue: "Gross Revenue (Total)"
-      order_items.net_revenue: "Net Realized Revenue"
-      order_items.returned_or_cancelled_revenue: "Returned / Cancelled Loss"
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    color_application:
+      collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+      palette_id: 5d189dfc-4f46-46f3-822b-bfb0b61777b1
+    hidden_fields: []
     x_axis_zoom: true
     y_axis_zoom: true
+    series_types:
+      order_items.gross_revenue: line
+    series_colors:
+      order_items.in_flight_revenue: "#12B5CB"
+      order_items.returned_or_cancelled_revenue: "#dadddf"
+      order_items.net_revenue: "#1A73E8"
+      order_items.gross_revenue: "#9334E6"
+    series_labels:
+      order_items.gross_revenue: Gross Revenue (Total)
+      order_items.net_revenue: Net Realized Revenue
+      order_items.returned_or_cancelled_revenue: Returned / Cancelled Loss
+    show_null_points: false
+    interpolation: monotone
     defaults_version: 1
+    modern2026: true
     listen:
       Country: users.country
       Category: products.category
       Created Year: order_items.created_year
-    row: 10
+    row: 22
     col: 0
-    width: 14
-    height: 8
-
+    width: 42
+    height: 16
+    tab_name: ''
   - title: "🎯 Order Fulfillment Pipeline by Poké-Status"
-    name: order_status_distribution
+    name: "🎯 Order Fulfillment Pipeline by Poké-Status"
     model: thelook_ecommerce_haengeun_us
     explore: customer_orders
     type: looker_pie
     fields: [order_items.status, order_items.total_items_sold]
     sorts: [order_items.total_items_sold desc]
     limit: 500
+    column_limit: 50
     value_labels: legend
     label_type: labPer
     inner_radius: 50
@@ -247,26 +324,24 @@
       Cancelled: "#EF4444"
       Returned: "#8B5CF6"
     defaults_version: 1
+    modern2026: true
     listen:
       Country: users.country
       Category: products.category
       Created Year: order_items.created_year
-    row: 10
-    col: 14
-    width: 10
-    height: 8
-
-  # ====================================================================
-  # ROW 18: BATTLE ARENA (CATEGORY REVENUE COMPARISON & POKÉMON PARTNERS)
-  # ====================================================================
-  - title: "⚔️ Category Battle Arena: Gross vs. Net Revenue Comparison"
-    name: category_revenue_battle_arena
+    row: 22
+    col: 42
+    width: 30
+    height: 16
+    tab_name: ''
+  - title: "⚔️ Category Battle Arena: Gross vs Net Revenue Comparison"
+    name: "⚔️ Category Battle Arena: Gross vs Net Revenue Comparison"
     model: thelook_ecommerce_haengeun_us
     explore: customer_orders
     type: looker_column
     fields: [products.category, order_items.gross_revenue, order_items.net_revenue]
     sorts: [order_items.gross_revenue desc]
-    limit: 12
+    limit: 10
     column_limit: 50
     x_axis_gridlines: false
     y_axis_gridlines: true
@@ -284,7 +359,7 @@
     trellis: ''
     stacking: ''
     limit_displayed_rows: false
-    legend_position: top
+    legend_position: center
     point_style: none
     show_value_labels: true
     label_density: 25
@@ -295,32 +370,44 @@
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    series_colors:
-      order_items.gross_revenue: "#6366F1"
-      order_items.net_revenue: "#059669"
-    series_labels:
-      order_items.gross_revenue: "Gross (Total) Revenue"
-      order_items.net_revenue: "Net Realized Revenue"
+    color_application:
+      collection_id: looker_2026
+      palette_id: looker_2026_categorical_1
+      options:
+        steps: 5
+        reverse: false
+        mirror: false
+    hidden_fields: []
+    y_axes: [{showLabels: false, showValues: false}]
     x_axis_zoom: true
     y_axis_zoom: true
+    series_colors:
+      order_items.gross_revenue: "#1A73E8"
+      order_items.net_revenue: "#12B5CB"
+    series_labels:
+      order_items.gross_revenue: Gross (Total) Revenue
+      order_items.net_revenue: Net Realized Revenue
     defaults_version: 1
+    modern2026: true
     listen:
       Country: users.country
       Category: products.category
       Created Year: order_items.created_year
-    row: 18
+    row: 38
     col: 0
-    width: 14
-    height: 9
-
+    width: 42
+    height: 18
+    tab_name: ''
   - title: "🐾 Category Champions: Pokémon Partner Leaderboard"
-    name: category_pokemon_partner_leaderboard
+    name: "🐾 Category Champions: Pokémon Partner Leaderboard"
     model: thelook_ecommerce_haengeun_us
     explore: customer_orders
     type: looker_grid
-    fields: [products.pokemon_mascot, products.category, order_items.total_items_sold, order_items.gross_revenue, order_items.net_revenue]
+    fields: [products.pokemon_mascot, products.category, order_items.total_items_sold,
+      order_items.gross_revenue, order_items.net_revenue]
     sorts: [order_items.gross_revenue desc]
     limit: 10
+    column_limit: 50
     show_view_names: false
     show_row_numbers: true
     transpose: false
@@ -334,27 +421,29 @@
     header_text_alignment: left
     header_font_size: 12
     rows_font_size: 12
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
     defaults_version: 1
+    modern2026: true
     listen:
       Country: users.country
       Category: products.category
       Created Year: order_items.created_year
-    row: 18
-    col: 14
-    width: 10
-    height: 9
-
-  # ====================================================================
-  # ROW 27: GLOBAL POKÉMON GYM LEADERBOARD (TOP SELLING COUNTRIES)
-  # ====================================================================
+    row: 38
+    col: 42
+    width: 30
+    height: 18
+    tab_name: ''
   - title: "🌍 Global Pokémon Gym Leaderboard: Top Selling Countries"
-    name: global_pokemon_gym_leaderboard
+    name: "🌍 Global Pokémon Gym Leaderboard: Top Selling Countries"
     model: thelook_ecommerce_haengeun_us
     explore: customer_orders
     type: looker_grid
-    fields: [users.country_with_pokemon, users.regional_gym_badge, order_items.total_items_sold, order_items.gross_revenue, order_items.net_revenue]
+    fields: [users.country_with_pokemon, users.regional_gym_badge, order_items.total_items_sold,
+      order_items.gross_revenue, order_items.net_revenue]
     sorts: [order_items.gross_revenue desc]
     limit: 10
+    column_limit: 50
     show_view_names: false
     show_row_numbers: true
     transpose: false
@@ -368,24 +457,28 @@
     header_text_alignment: left
     header_font_size: 12
     rows_font_size: 12
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
     defaults_version: 1
+    modern2026: true
     listen:
       Country: users.country
       Category: products.category
       Created Year: order_items.created_year
-    row: 27
+    row: 56
     col: 0
-    width: 14
-    height: 9
-
+    width: 42
+    height: 18
+    tab_name: ''
   - title: "🏆 Top Selling Countries by Total Revenue"
-    name: top_countries_revenue_bar
+    name: "🏆 Top Selling Countries by Total Revenue"
     model: thelook_ecommerce_haengeun_us
     explore: customer_orders
     type: looker_bar
     fields: [users.country, order_items.gross_revenue]
     sorts: [order_items.gross_revenue desc]
     limit: 8
+    column_limit: 50
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -416,26 +509,26 @@
     series_colors:
       order_items.gross_revenue: "#F59E0B"
     defaults_version: 1
+    modern2026: true
     listen:
       Country: users.country
       Category: products.category
       Created Year: order_items.created_year
-    row: 27
-    col: 14
-    width: 10
-    height: 9
-
-  # ====================================================================
-  # ROW 36: TOP SELLING PRODUCTS (POKÉMART HALL OF FAME)
-  # ====================================================================
+    row: 56
+    col: 42
+    width: 30
+    height: 18
+    tab_name: ''
   - title: "⭐ PokéMart Hall of Fame: Top Selling Products (Units Sold)"
-    name: top_selling_products_volume_table
+    name: "⭐ PokéMart Hall of Fame: Top Selling Products (Units Sold)"
     model: thelook_ecommerce_haengeun_us
     explore: customer_orders
     type: looker_grid
-    fields: [products.pokemon_mascot, products.name, products.brand, products.category, order_items.total_items_sold, order_items.gross_revenue, order_items.net_revenue]
+    fields: [products.pokemon_mascot, products.name, products.brand, products.category,
+      order_items.total_items_sold, order_items.gross_revenue, order_items.net_revenue]
     sorts: [order_items.total_items_sold desc]
     limit: 12
+    column_limit: 50
     show_view_names: false
     show_row_numbers: true
     transpose: false
@@ -449,24 +542,28 @@
     header_text_alignment: left
     header_font_size: 12
     rows_font_size: 12
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
     defaults_version: 1
+    modern2026: true
     listen:
       Country: users.country
       Category: products.category
       Created Year: order_items.created_year
-    row: 36
+    row: 74
     col: 0
-    width: 14
-    height: 10
-
+    width: 42
+    height: 20
+    tab_name: ''
   - title: "💎 Legendary Tier: Top 10 Products by Total Revenue"
-    name: top_products_revenue_bar
+    name: "💎 Legendary Tier: Top 10 Products by Total Revenue"
     model: thelook_ecommerce_haengeun_us
     explore: customer_orders
     type: looker_bar
     fields: [products.name, order_items.gross_revenue]
     sorts: [order_items.gross_revenue desc]
     limit: 10
+    column_limit: 50
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -497,22 +594,19 @@
     series_colors:
       order_items.gross_revenue: "#8B5CF6"
     defaults_version: 1
+    modern2026: true
     listen:
       Country: users.country
       Category: products.category
       Created Year: order_items.created_year
-    row: 36
-    col: 14
-    width: 10
-    height: 10
-
-  # ====================================================================
-  # ROW 46: POKÉMART DEPARTMENT PARTNERS SHOWCASE
-  # ====================================================================
-  - name: pokemart_partner_guide
+    row: 74
+    col: 42
+    width: 30
+    height: 20
+    tab_name: ''
+  - name: " (3)"
     type: text
-    title_text: ""
-    subtitle_text: ""
+    title_text: ''
     body_text: |
       <div style="background: linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%); border: 2px solid #E2E8F0; border-radius: 16px; padding: 24px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
         <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #CBD5E1; padding-bottom: 12px; margin-bottom: 16px;">
@@ -569,14 +663,11 @@
           </div>
         </div>
       </div>
-    row: 46
+    row: 94
     col: 0
-    width: 24
-    height: 6
-
-  # ====================================================================
-  # DASHBOARD FILTERS
-  # ====================================================================
+    width: 72
+    height: 12
+    tab_name: ''
   filters:
   - name: Country
     title: Country
@@ -591,7 +682,6 @@
     explore: customer_orders
     listens_to_filters: []
     field: users.country
-
   - name: Category
     title: Category
     type: field_filter
@@ -605,7 +695,6 @@
     explore: customer_orders
     listens_to_filters: []
     field: products.category
-
   - name: Created Year
     title: Created Year
     type: field_filter
