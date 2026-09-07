@@ -10,7 +10,7 @@
   # ===== KPI SECTION =====
   - title: Total Inventory Items
     name: Total Inventory Items
-    model: bq-haengeun-ecommerce
+    model: thelook_ecommerce_haengeun_us
     explore: fulfillment
     type: single_value
     fields: [inventory_items.count]
@@ -34,7 +34,7 @@
     
   - title: Total Inventory Cost
     name: Total Inventory Cost
-    model: bq-haengeun-ecommerce
+    model: thelook_ecommerce_haengeun_us
     explore: fulfillment
     type: single_value
     fields: [inventory_items.total_cost]
@@ -59,7 +59,7 @@
     
   - title: Average Item Cost
     name: Average Item Cost
-    model: bq-haengeun-ecommerce
+    model: thelook_ecommerce_haengeun_us
     explore: fulfillment
     type: single_value
     fields: [inventory_items.average_cost]
@@ -84,7 +84,7 @@
     
   - title: Active Distribution Centers
     name: Active Distribution Centers
-    model: bq-haengeun-ecommerce
+    model: thelook_ecommerce_haengeun_us
     explore: fulfillment
     type: single_value
     fields: [distribution_centers.count]
@@ -109,7 +109,7 @@
   # ===== INVENTORY BY CATEGORY =====
   - title: Inventory Distribution by Product Category
     name: Inventory Distribution by Category
-    model: bq-haengeun-ecommerce
+    model: thelook_ecommerce_haengeun_us
     explore: fulfillment
     type: looker_column
     fields: [inventory_items.product_category, inventory_items.count]
@@ -157,7 +157,7 @@
   # ===== INVENTORY BY DEPARTMENT =====
   - title: Inventory Count by Department
     name: Inventory Count by Department
-    model: bq-haengeun-ecommerce
+    model: thelook_ecommerce_haengeun_us
     explore: fulfillment
     type: looker_pie
     fields: [inventory_items.product_department, inventory_items.count]
@@ -184,7 +184,7 @@
   # ===== FULFILLMENT STATUS OVER TIME =====
   - title: Inventory Created vs Sold Timeline
     name: Fulfillment Timeline
-    model: bq-haengeun-ecommerce
+    model: thelook_ecommerce_haengeun_us
     explore: fulfillment
     type: looker_line
     fields: [inventory_items.created_date, inventory_items.count, inventory_items.sold_items_count]
@@ -235,7 +235,7 @@
   # ===== INVENTORY BY DISTRIBUTION CENTER =====
   - title: "🏭 Inventory by Distribution Center"
     name: Inventory by Distribution Center
-    model: bq-haengeun-ecommerce
+    model: thelook_ecommerce_haengeun_us
     explore: fulfillment
     type: looker_bar
     fields: [distribution_centers.name, inventory_items.count]
@@ -284,7 +284,7 @@
   # ===== TOP BRANDS =====
   - title: Top 15 Product Brands by Inventory
     name: Top Product Brands
-    model: bq-haengeun-ecommerce
+    model: thelook_ecommerce_haengeun_us
     explore: fulfillment
     type: looker_column
     fields: [inventory_items.product_brand, inventory_items.count]
@@ -333,7 +333,7 @@
   # ===== PRICE ANALYSIS =====
   - title: "💰 Average Retail Price by Category"
     name: Average Retail Price by Category
-    model: bq-haengeun-ecommerce
+    model: thelook_ecommerce_haengeun_us
     explore: fulfillment
     type: looker_bar
     fields: [inventory_items.product_category, inventory_items.average_retail_price]
@@ -383,7 +383,7 @@
   # ===== DETAILED INVENTORY GRID =====
   - title: "📋 Detailed Inventory Items"
     name: Detailed Inventory
-    model: bq-haengeun-ecommerce
+    model: thelook_ecommerce_haengeun_us
     explore: fulfillment
     type: looker_grid
     fields: [inventory_items.id, inventory_items.product_name, inventory_items.product_brand, inventory_items.product_category, inventory_items.product_department, inventory_items.cost, inventory_items.product_retail_price, inventory_items.created_date, inventory_items.sold_date, distribution_centers.name]
@@ -425,7 +425,7 @@
       type: advanced
       display: popover
       options: []
-    model: bq-haengeun-ecommerce
+    model: thelook_ecommerce_haengeun_us
     explore: fulfillment
     listens_to_filters: []
     field: inventory_items.created_date
