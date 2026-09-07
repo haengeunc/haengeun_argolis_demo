@@ -44,6 +44,28 @@ view: +order_items {
     sql: MAX(${created_date}) ;;
   }
 
+  ###### --- Period over period --- ####
+
+  measure: sales_previous_month {
+    type: period_over_period
+    description: "Total sales revenue from the previous month"
+    based_on: order_items.total_sale_price
+    based_on_time: order_items.created_date
+    period: month
+    kind: previous
+    group_label: "Period-over-period"
+  }
+
+  measure: sales_month_over_month_change {
+    type: period_over_period
+    description: "Sales revenue % change month-over-month"
+    based_on: order_items.total_sale_price
+    based_on_time: order_items.created_date
+    period: month
+    kind: relative_change
+    group_label: "Period-over-period"
+    value_format_name: percent_0
+  }
 
   # ----------------------------------------------------------------------
   # 1. Fulfillment Durations (Dimensions)

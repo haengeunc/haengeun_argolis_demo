@@ -19,17 +19,17 @@ view: order_items {
   }
   dimension: inventory_item_id {
     type: number
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.inventory_item_id ;;
   }
   dimension: order_id {
     type: number
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.order_id ;;
   }
   dimension: product_id {
     type: number
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.product_id ;;
   }
   dimension_group: returned {
@@ -52,7 +52,7 @@ view: order_items {
   }
   dimension: user_id {
     type: number
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.user_id ;;
   }
   measure: count {

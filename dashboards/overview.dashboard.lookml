@@ -180,8 +180,8 @@
             id: orders.order_count_last_year_difference, name: Difference}], showLabels: true,
         showValues: true, valueFormat: '', unpinAxis: false, tickDensity: default,
         tickDensityCustom: 5, type: linear}, {label: !!null '', orientation: right,
-        series: [{axisId: orders.order_count_last_year_percet_change, id: orders.order_count_last_year_percet_change,
-            name: Order Count Last Year Percet Change}], showLabels: true, showValues: true,
+        series: [{axisId: orders.order_count_last_year_percent_change, id: orders.order_count_last_year_percent_change,
+            name: Order Count Last Year Percent Change}], showLabels: true, showValues: true,
         unpinAxis: false, tickDensity: default, tickDensityCustom: 5, type: linear}]
     x_axis_zoom: true
     y_axis_zoom: true

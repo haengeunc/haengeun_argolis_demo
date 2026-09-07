@@ -10,6 +10,8 @@ include: "/dashboards/*.dashboard"
 
 label: "Haengeun E-commerce"
 
+fiscal_month_offset: 1
+
 datagroup: thelook_ecommerce_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"

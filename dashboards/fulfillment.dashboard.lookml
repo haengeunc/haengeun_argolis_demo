@@ -36,7 +36,7 @@
     model: bq-haengeun-ecommerce
     explore: fulfillment
     type: single_value
-    fields: [inventory_items.cost]
+    fields: [inventory_items.total_cost]
     limit: 500
     custom_color_enabled: true
     show_single_value_title: true
@@ -60,7 +60,7 @@
     model: bq-haengeun-ecommerce
     explore: fulfillment
     type: single_value
-    fields: [inventory_items.cost]
+    fields: [inventory_items.average_cost]
     limit: 500
     custom_color_enabled: true
     show_single_value_title: true
@@ -325,8 +325,8 @@
     model: bq-haengeun-ecommerce
     explore: fulfillment
     type: looker_bar
-    fields: [inventory_items.product_category, inventory_items.product_retail_price]
-    sorts: [inventory_items.product_retail_price desc]
+    fields: [inventory_items.product_category, inventory_items.average_retail_price]
+    sorts: [inventory_items.average_retail_price desc]
     limit: 500
     column_limit: 50
     x_axis_gridlines: true
@@ -359,7 +359,7 @@
     x_axis_zoom: true
     y_axis_zoom: true
     series_colors:
-      inventory_items.product_retail_price: "#16A34A"
+      inventory_items.average_retail_price: "#16A34A"
     value_format: "$#,##0.00"
     defaults_version: 1
     listen: {}

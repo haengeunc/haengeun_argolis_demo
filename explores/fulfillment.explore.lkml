@@ -4,6 +4,8 @@ include: "/staging_views/distribution_centers.layer.lkml"
 
 
 explore: fulfillment {
+  label: "Fulfillment & Inventory"
+  description: "Monitor inventory stock levels, fulfillment timelines, and distribution center operations."
 
   view_name: inventory_items
 

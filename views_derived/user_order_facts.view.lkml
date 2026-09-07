@@ -2,19 +2,19 @@ view: user_order_facts {
   view_label: "Users"
   derived_table: {
     sql:
-    SELECT
-        user_id
-        , COUNT(DISTINCT order_id) AS lifetime_orders
-        , SUM(sale_price) AS lifetime_revenue
-        , CAST(MIN(created_at)  AS TIMESTAMP) AS first_order
-        , CAST(MAX(created_at)  AS TIMESTAMP)  AS latest_order
-        , COUNT(DISTINCT FORMAT_TIMESTAMP('%Y%m', created_at))  AS number_of_distinct_months_with_orders
-      FROM bigquery-public-data.thelook_ecommerce.order_items
+      SELECT
+        user_id,
+        COUNT(DISTINCT order_id) AS lifetime_orders,
+        SUM(sale_price) AS lifetime_revenue,
+        CAST(MIN(created_at) AS TIMESTAMP) AS first_order,
+        CAST(MAX(created_at) AS TIMESTAMP) AS latest_order,
+        COUNT(DISTINCT FORMAT_TIMESTAMP('%Y%m', created_at)) AS number_of_distinct_months_with_orders
+      FROM ${order_items.SQL_TABLE_NAME}
       GROUP BY user_id
     ;;
     # persist_for: "4 hours"
-      datagroup_trigger: orders_datagroup
-    }
+    datagroup_trigger: orders_datagroup
+  }
 
     dimension: user_id {
       label: "User ID"
@@ -109,7 +109,7 @@ view: user_order_facts {
     }
 
     dimension: lifetime_revenue_tier {
-      label: "Lifetime Reveneue Tier"
+      label: "Lifetime Revenue Tier"
       group_label: "Lifetime Profile"
       type: tier
       tiers: [0, 25, 50, 100, 200, 500, 1000]
@@ -118,7 +118,7 @@ view: user_order_facts {
     }
 
     measure: average_lifetime_revenue {
-      label: "Average Lifetime Margin"
+      label: "Average Lifetime Revenue"
       type: average
       value_format_name: usd
       sql: ${lifetime_revenue} ;;
@@ -131,8 +131,14 @@ view: user_order_facts {
     }
 
     measure: active_user_count {
-      type: sum
-      filters: [lifetime_orders: "< 2", first_order_date: "before 30 days ago"]
+      type: count_distinct
       sql: ${user_id} ;;
+      filters: [lifetime_orders: "< 2", first_order_date: "before 30 days ago"]
+      description: "Count of distinct active users with fewer than 2 lifetime orders"
+    }
+
+    measure: count {
+      type: count
+      drill_fields: [user_id, lifetime_orders, lifetime_revenue]
     }
   }
