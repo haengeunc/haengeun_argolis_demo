@@ -112,7 +112,7 @@ view: +order_items {
     type: number
     label: "Average Order Value (Gross)"
     group_label: "Order Value"
-    description: "Average gross revenue generated per placed order at checkout, before cancellations or returns. Formula: Gross Revenue / Total Orders Placed."
+    description: "Average gross revenue generated per placed order at checkout, includes all transactions includig cancellations or returns. Formula: Gross Revenue / Total Orders Placed."
     sql: 1.0 * ${gross_revenue} / NULLIF(${order_count}, 0) ;;
     value_format_name: usd
     synonyms: ["aov", "gross aov", "average order value", "average basket size", "order size", "cart size", "ticket size", "mean order value", "average checkout"]
@@ -139,21 +139,15 @@ view: +order_items {
   # ----------------------------------------------------------------------
 
   measure: dynamic_revenue {
-    type: sum
+    type: number
     label: "{% if _user_attributes['department'] == 'sales' %}Total Bookings (Sales){% else %}Recognised Net Revenue (Finance){% endif %}"
     description: "{% if _user_attributes['department'] == 'sales' %}Gross booking value across all orders, regardless of return/cancellation status{% else %}Recognised completed revenue excluding shipped, processing, cancelled and returned items{% endif %}"
     sql:
-      {% if _user_attributes['department'] == 'sales' %}
-        ${sale_price}
-      {% elsif _user_attributes['department'] == 'finance' %}
-        CASE
-          WHEN ${TABLE}.status = 'Complete' THEN
-          ${sale_price}
-          ELSE 0
-        END
-      {% else %}
-        ${sale_price}
-      {% endif %} ;;
+    {% if _user_attributes['department'] == 'sales' %}
+    ${gross_revenue}
+    {% else %}
+    ${net_revenue}
+    {% endif %} ;;
 
     value_format_name: usd_0
     drill_fields: [products.name, products.brand, dynamic_revenue]
