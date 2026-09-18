@@ -12,3 +12,5 @@ constant: city_name {
 constant: model_name {
   value: "thelook_ecommerce_haengeun_us"
 }
+
+#test
